@@ -2,4 +2,8 @@ Python project that utilize ML models to predict diabetic status of some 250,000
 
 Data Source: https://www.kaggle.com/datasets/alexteboul/diabetes-health-indicators-dataset?resource=download
 
-Methodology: Stratified train test split was performed with 20% of the data reserved for the test and the remaining 80% utilized for model selection as a training validation set. GridSearchCV was performed with 5 fold cross validation to determine the optimal hyperparameters for each model.
+Methodology: Stratified train test split was performed with 20% of the data reserved for the test and the remaining 80% utilized for model selection. GridSearchCV was performed with 5 fold cross validation to determine the optimal hyperparameters. Evaluation was performed using ROC-AUC as the primary performance metric, while additional scores were taken for average precision, f1-score and recall. Threshold shifting was performed after to find the optimal secondary metrics such as for recall.
+
+Discussion: Collectively, the models produced ROC-AUC above 0.8 for each model. F1 Score, the harmonic mean between recall and precision, was less impressive as no model was able to break 0.5. This result is unsurprising as diabetes is a highly complex condition with myriads of clinical interactions and nuances. Being able to score above 50% in one of the metrics of recall and precision is fairly good. In a similar case using BRFSS data from 2014, Zidian Xie et al. (Xie, 2019 - https://www.cdc.gov/pcd/issues/2019/19_0109.htm) built models that had sensitivities of around 50%-51% so our models performed very favorably.
+
+Conclusion: The ML models predicted at a high level the diabetes status of individuals using a dataset with 250,000 subjects and only 21 features. These models all had ROC-AUC scores of above 0.8 and reported secondary metrics using threshold shifting to obtain optimal scores for F1 Score, Recall and Precision that compared favorably with literature results.
